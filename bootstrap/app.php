@@ -12,6 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // El hosting termina HTTPS en su proxy: se confía en sus cabeceras X-Forwarded-*
+        $middleware->trustProxies(at: '*');
         $middleware->web(append: [
             \App\Http\Middleware\SecurityHeaders::class,
             \App\Http\Middleware\EnsureUserIsActive::class,

@@ -1,0 +1,52 @@
+# Despliegue en Render (plan gratuito): aplicación web Docker + PostgreSQL.
+services:
+  - type: web
+    name: clinica-pediatrica
+    runtime: docker
+    plan: free
+    region: oregon
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: "Clínica Pediátrica"
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_LOCALE
+        value: es
+      - key: APP_TIMEZONE
+        value: America/Lima
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_URL
+        fromDatabase:
+          name: clinica-pediatrica-db
+          property: connectionString
+      - key: SESSION_DRIVER
+        value: database
+      - key: SESSION_SECURE_COOKIE
+        value: "true"
+      - key: SESSION_ENCRYPT
+        value: "true"
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: MAIL_MAILER
+        value: log
+      - key: SMS_DRIVER
+        value: log
+      - key: SEED_DEMO
+        value: "true"
+
+databases:
+  - name: clinica-pediatrica-db
+    plan: free
+    region: oregon
+    databaseName: clinica_pediatrica
+    user: clinica
