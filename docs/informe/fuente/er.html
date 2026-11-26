@@ -1,0 +1,45 @@
+<html><head><meta charset="utf-8"><style>
+body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:20px;width:1250px;background:#fff;color:#111}
+.g{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.m{border:2px solid #333;border-radius:8px;padding:8px}
+.mt{font-weight:bold;font-size:15px;margin-bottom:6px;border-bottom:1px solid #333;padding-bottom:4px}
+.e{font-size:12.5px;margin:3px 0}.e b{font-family:Consolas,monospace}
+.rel{margin-top:14px;border:1px dashed #333;border-radius:8px;padding:8px;font-size:13px}
+</style></head><body><div class="g">
+<div class="m"><div class="mt">Módulo 1 – Pacientes</div>
+<div class="e"><b>patients</b> 1—N <b>patient_tutor</b> N—1 <b>tutors</b></div>
+<div class="e"><b>patients</b> 1—N <b>consents</b></div>
+<div class="e"><b>patients</b> 1—1 <b>pediatric_records</b></div>
+<div class="e"><b>patients</b> 1—N <b>anthropometric_measurements</b></div>
+<div class="e"><b>patients</b> 1—N <b>milestone_assessments</b> N—1 <b>milestones</b></div>
+<div class="e"><b>patients</b> 1—N <b>psc35_screenings</b></div>
+<div class="e"><b>vaccines</b> 1—N <b>vaccine_schedule_doses</b></div>
+<div class="e"><b>patients</b> 1—N <b>immunizations</b> 1—N <b>esavi_reports</b></div></div>
+<div class="m"><div class="mt">Módulo 2 – Clínica</div>
+<div class="e"><b>patients</b> 1—N <b>appointments</b> N—1 <b>users</b> (médico)</div>
+<div class="e"><b>appointments</b> 1—1 <b>consultations</b></div>
+<div class="e"><b>consultations</b> 1—N <b>consultation_diagnoses</b> N—1 <b>cie10_codes</b></div>
+<div class="e"><b>consultations</b> 1—N <b>prescriptions</b> 1—N <b>prescription_items</b></div>
+<div class="e"><b>drug_interactions</b> (catálogo)</div>
+<div class="e"><b>consultations</b> 1—N <b>lab_orders</b> 1—N <b>lab_order_items</b> N—1 <b>lab_tests</b></div></div>
+<div class="m"><div class="mt">Módulo 3 – Farmacia</div>
+<div class="e"><b>medications</b> 1—N <b>lots</b> 1—N <b>inventory_movements</b></div>
+<div class="e"><b>prescriptions</b> 1—N <b>dispensations</b> 1—N <b>dispensation_items</b></div>
+<div class="e"><b>medications</b> 1—N <b>controlled_drug_entries</b></div>
+<div class="e"><b>lots</b> 1—N <b>lot_recalls</b></div>
+<div class="e"><b>inventory_counts</b> 1—N <b>inventory_count_items</b></div>
+<div class="e"><b>medication_errors</b> (evidencia adjunta)</div></div>
+<div class="m"><div class="mt">Módulo 4 – Facturación y administración</div>
+<div class="e"><b>patients</b> 1—N <b>patient_accounts</b> 1—N <b>charges</b></div>
+<div class="e"><b>patient_accounts</b> 1—N <b>invoices</b> 1—N <b>payments</b></div>
+<div class="e"><b>users</b> N—N <b>roles</b> N—N <b>permissions</b></div>
+<div class="e"><b>audit_logs</b> (solo inserción, cadena SHA-256)</div></div>
+<div class="m"><div class="mt">Módulo 5 – Portal y comunicación</div>
+<div class="e"><b>tutors</b> 1—1 <b>users</b> (rol tutor)</div>
+<div class="e"><b>tutors</b> 1—N <b>notification_logs</b></div>
+<div class="e"><b>tutors</b> 1—N <b>document_accesses</b></div></div>
+<div class="m"><div class="mt">Relaciones entre módulos</div>
+<div class="e"><b>vaccines</b> N—1 <b>medications</b> (stock de vacunas)</div>
+<div class="e"><b>immunizations</b> N—1 <b>lots</b> (descuento automático)</div>
+<div class="e"><b>charges</b> → origen: consulta, procedimiento, vacuna, examen o dispensación</div></div>
+</div></body></html>
