@@ -50,7 +50,6 @@ class DispensacionService
 
         return DB::transaction(function () use ($receta, $lineas, $farmaceutico, $tutor, $observaciones) {
             $dispensacion = Dispensation::create([
-                'codigo' => Dispensation::siguienteCodigo(),
                 'prescription_id' => $receta->id,
                 'patient_id' => $receta->patient_id,
                 'pharmacist_id' => $farmaceutico->id,

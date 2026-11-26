@@ -64,3 +64,5 @@
     body { background: white !important; }
     .print-full { margin: 0 !important; padding: 0 !important; width: 100% !important; }
 }
+
+[x-cloak] { display: none !important; }

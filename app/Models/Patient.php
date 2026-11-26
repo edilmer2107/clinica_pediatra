@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\CodigoCorrelativo;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Patient extends Model
 {
+    use CodigoCorrelativo;
     use HasFactory, SoftDeletes;
+
+    public const PREFIJO_CODIGO = 'HC';
+
+    public const COLUMNA_CODIGO = 'historia_clinica';
 
     protected $guarded = ['id'];
 
@@ -134,10 +140,4 @@ class Patient extends Model
         return "{$diff->d} d";
     }
 
-    public static function siguienteHistoriaClinica(): string
-    {
-        $ultimo = static::withTrashed()->max('id') ?? 0;
-
-        return 'HC-'.str_pad((string) ($ultimo + 1), 6, '0', STR_PAD_LEFT);
-    }
 }

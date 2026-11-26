@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\CodigoCorrelativo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Dispensation extends Model
 {
+    use CodigoCorrelativo;
+
+    public const PREFIJO_CODIGO = 'DS';
+
+    public const COLUMNA_CODIGO = 'codigo';
+
     protected $guarded = ['id'];
 
     protected function casts(): array
@@ -40,8 +47,4 @@ class Dispensation extends Model
         return $this->hasMany(DispensationItem::class);
     }
 
-    public static function siguienteCodigo(): string
-    {
-        return 'DS-'.str_pad((string) ((static::max('id') ?? 0) + 1), 6, '0', STR_PAD_LEFT);
-    }
 }

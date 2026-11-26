@@ -27,7 +27,7 @@ class PacienteService
         }
 
         return DB::transaction(function () use ($paciente, $tutor, $vinculo, $consentimiento) {
-            $nuevo = Patient::create($paciente + ['historia_clinica' => Patient::siguienteHistoriaClinica()]);
+            $nuevo = Patient::create($paciente);
 
             $tutorModelo = Tutor::firstOrCreate(['dni' => $tutor['dni']], $tutor);
             $this->vincular($nuevo, $tutorModelo, $vinculo['parentesco'], true, $vinculo['puede_retirar_medicamentos'] ?? true);

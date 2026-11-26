@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\CodigoCorrelativo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LabOrder extends Model
 {
+    use CodigoCorrelativo;
+
+    public const PREFIJO_CODIGO = 'OL';
+
+    public const COLUMNA_CODIGO = 'codigo';
+
     protected $guarded = ['id'];
 
     public function patient(): BelongsTo
@@ -35,8 +42,4 @@ class LabOrder extends Model
         return $this->items->contains('es_anormal', true);
     }
 
-    public static function siguienteCodigo(): string
-    {
-        return 'OL-'.str_pad((string) ((static::max('id') ?? 0) + 1), 6, '0', STR_PAD_LEFT);
-    }
 }
