@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class LabTest extends Model
+{
+    protected $guarded = ['id'];
+
+    protected function casts(): array
+    {
+        return ['ref_min' => 'float', 'ref_max' => 'float', 'precio' => 'float'];
+    }
+}
