@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             ClinicaCatalogoSeeder::class,
             PacientesDemoSeeder::class,
             ClinicaDemoSeeder::class,
+            FacturacionDemoSeeder::class,
         ]);
     }
 }

@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\CodigoCorrelativo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Invoice extends Model
 {
+    use CodigoCorrelativo;
+
+    public const PREFIJO_CODIGO = 'B001';
+
+    public const COLUMNA_CODIGO = 'numero';
+
     protected $guarded = ['id'];
 
     protected function casts(): array
