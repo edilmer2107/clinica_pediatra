@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
             RolesPermisosSeeder::class,
             UsuariosSeeder::class,
             FarmaciaSeeder::class,
+            PacientesCatalogoSeeder::class,
+            PacientesDemoSeeder::class,
         ]);
     }
 }
